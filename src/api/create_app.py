@@ -8,7 +8,7 @@ from src.core.database import engine
 
 
 @asynccontextmanager
-async def lifespan(app: FastAPI):
+async def lifespan():
     async with engine.begin() as conn:
         await conn.execute(text("SELECT 1"))
 
