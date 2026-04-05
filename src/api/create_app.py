@@ -3,12 +3,13 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, Response
 from sqlalchemy import text
 
+from src.api.routes.webhook import webhook
 from src.core.config import Settings
 from src.core.database import engine
 
 
 @asynccontextmanager
-async def lifespan():
+async def lifespan(app: FastAPI):
     async with engine.begin() as conn:
         await conn.execute(text("SELECT 1"))
 
@@ -25,6 +26,8 @@ def create_app(setting: Settings) -> FastAPI:
         redoc_url="/redoc",
         lifespan=lifespan,
     )
+
+    app.include_router(webhook)
 
     @app.get("/health", include_in_schema=False)
     def health_check():

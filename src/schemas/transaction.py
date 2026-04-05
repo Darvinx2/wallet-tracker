@@ -3,9 +3,9 @@ from pydantic import BaseModel
 
 class TransactionCreate (BaseModel):
     signature: str
-    wallet_address: str
+    wallet_address: str | None = None
     type: str
-    amount: int
+    amount: int | None = None
     from_address: str | None = None
     to_address: str | None = None
     token_mint: str | None = None
