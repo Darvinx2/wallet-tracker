@@ -7,6 +7,7 @@ from src.core.database import get_db
 from src.repositories.subscription import SubscriptionRepository
 from src.repositories.transaction import TransactionRepository
 from src.services.subscription import SubscriptionService
+from src.services.transaction import TransactionService
 from src.services.webhook import WebhookService
 from src.utils.helius_auth import verify_helius_signature
 
@@ -48,3 +49,9 @@ async def get_subscription_service(
         settings: Settings = Depends(get_settings),
 ) -> SubscriptionService:
     return SubscriptionService(repo, helius, settings.helius_webhook_id)
+
+
+async def get_transaction_service(
+        repo: TransactionRepository = Depends(get_transaction_repo),
+) -> TransactionService:
+    return TransactionService(repo)

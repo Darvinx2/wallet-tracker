@@ -13,3 +13,18 @@ async def add_subscription(
         service: SubscriptionService = Depends(get_subscription_service),
 ) -> SubscriptionResponse:
     return await service.add(body.wallet_address)
+
+
+@subscriptions.get("/subscriptions", response_model=list[SubscriptionResponse])
+async def get_subscriptions(
+        service: SubscriptionService = Depends(get_subscription_service),
+) -> list[SubscriptionResponse]:
+    return await service.get_all()
+
+
+@subscriptions.delete("/subscriptions/{wallet_address}", status_code=204)
+async def delete_subscription(
+        wallet_address: str,
+        service: SubscriptionService = Depends(get_subscription_service),
+) -> None:
+    await service.delete(wallet_address)
