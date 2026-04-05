@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     database_url: str
     helius_api_key: str
     helius_auth_header: str
+    helius_webhook_id: str
 
     model_config = SettingsConfigDict(env_file=ENV_FILE)
 
