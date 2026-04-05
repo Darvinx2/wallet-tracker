@@ -19,6 +19,10 @@ class TransactionRepository:
             await self.db.rollback()
             print("Error", e)
 
-    async def get_by_signature(self, signature: str) -> Transaction | None:
-        transaction = await self.db.scalar(select(Transaction).where(Transaction.signature == signature))
-        return transaction
+    async def get_by_wallet(self, wallet_address: str) -> list[Transaction]:
+        result = await self.db.scalars(
+            select(Transaction)
+            .where(Transaction.wallet_address == wallet_address)
+            .order_by(Transaction.timestamp.desc())
+        )
+        return list(result.all())
