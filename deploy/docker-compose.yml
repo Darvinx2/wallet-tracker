@@ -9,7 +9,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     env_file:
-      - .env
+      - ../.env
 
   ngrok:
     image: ngrok/ngrok:latest
@@ -18,10 +18,12 @@ services:
       - "4040:4040"
     environment:
       - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+    env_file:
+      - ../.env
 
   app:
     build:
-      context: .
+      context: ..
       dockerfile: ./deploy/Dockerfile
     depends_on:
       db:
@@ -31,7 +33,7 @@ services:
     ports:
       - "8000:8000"
     env_file:
-      - .env
+      - ../.env
 
 volumes:
   postgres_data:
