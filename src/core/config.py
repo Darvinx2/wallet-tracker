@@ -11,8 +11,9 @@ class Settings(BaseSettings):
     helius_api_key: str
     helius_auth_header: str
     helius_webhook_id: str
+    use_ngrok: bool = False
 
-    model_config = SettingsConfigDict(env_file=ENV_FILE)
+    model_config = SettingsConfigDict(env_file=ENV_FILE, extra="ignore")
 
 
 @lru_cache

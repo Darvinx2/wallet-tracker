@@ -36,3 +36,23 @@ class HeliusClient:
             if response.is_error:
                 raise ValueError(f"Helius error {response.status_code}: {response.text}")
 
+    async def update_webhook_url(self, webhook_id: str, new_url: str) -> None:
+        webhook = await self.get_webhook(webhook_id)
+
+        payload = {
+            "webhookURL": new_url,
+            "transactionTypes": webhook["transactionTypes"],
+            "accountAddresses": webhook["accountAddresses"],
+            "webhookType": webhook["webhookType"],
+            "authHeader": webhook.get("authHeader"),
+        }
+
+        async with httpx.AsyncClient() as client:
+            response = await client.put(
+                f"{self.BASE_URL}/webhooks/{webhook_id}",
+                params={"api-key": self.api_key},
+                json=payload,
+            )
+            if response.is_error:
+                raise ValueError(f"Helius error {response.status_code}: {response.text}")
+
