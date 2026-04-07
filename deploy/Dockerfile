@@ -10,4 +10,4 @@ USER appuser
 
 EXPOSE 8000
 
-CMD ["python", "-m", "src.main"]
+CMD ["sh", "-c", "alembic upgrade head && python -m src.main"]
