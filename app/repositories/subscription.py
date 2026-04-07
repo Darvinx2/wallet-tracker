@@ -2,8 +2,8 @@ from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.models.models import Subscription
-from src.schemas.subscription import SubscriptionCreate
+from app.models.models import Subscription
+from app.schemas.subscription import SubscriptionCreate
 
 
 class SubscriptionRepository:

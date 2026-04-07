@@ -1,7 +1,7 @@
 import pytest
 from fastapi import HTTPException
 
-from src.schemas.subscription import SubscriptionResponse
+from app.schemas.subscription import SubscriptionResponse
 
 
 class TestSubscriptionServiceAdd:

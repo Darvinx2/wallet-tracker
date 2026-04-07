@@ -1,6 +1,6 @@
 import pytest
 
-from src.schemas.transaction import TransactionResponse
+from app.schemas.transaction import TransactionResponse
 
 
 class TestTransactionServiceGetByWallet:

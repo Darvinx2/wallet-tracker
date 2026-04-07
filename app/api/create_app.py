@@ -3,11 +3,11 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, Response
 from sqlalchemy import text
 
-from src.api.routes.subscriptions import subscriptions
-from src.api.routes.transactions import transactions
-from src.api.routes.webhook import webhook
-from src.core.config import Settings
-from src.core.database import engine
+from app.api.routes.subscriptions import subscriptions
+from app.api.routes.transactions import transactions
+from app.api.routes.webhook import webhook
+from app.core.config import Settings
+from app.core.database import engine
 
 
 @asynccontextmanager

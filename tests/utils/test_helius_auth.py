@@ -1,7 +1,7 @@
 import pytest
 from fastapi import HTTPException
 
-from src.utils.helius_auth import verify_helius_signature
+from app.utils.helius_auth import verify_helius_signature
 
 
 class TestVerifyHeliusSignature:

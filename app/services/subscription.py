@@ -1,8 +1,8 @@
 from fastapi import HTTPException
 
-from src.clients.helius import HeliusClient
-from src.repositories.subscription import SubscriptionRepository
-from src.schemas.subscription import SubscriptionCreate, SubscriptionResponse
+from app.clients.helius import HeliusClient
+from app.repositories.subscription import SubscriptionRepository
+from app.schemas.subscription import SubscriptionCreate, SubscriptionResponse
 
 
 class SubscriptionService:

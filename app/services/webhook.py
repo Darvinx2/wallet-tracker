@@ -1,6 +1,6 @@
-from src.repositories.transaction import TransactionRepository
-from src.schemas.helius import HeliusEvent
-from src.schemas.transaction import TransactionCreate
+from app.repositories.transaction import TransactionRepository
+from app.schemas.helius import HeliusEvent
+from app.schemas.transaction import TransactionCreate
 
 
 class WebhookService:

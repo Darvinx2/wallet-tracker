@@ -1,10 +1,10 @@
 import pytest
 from unittest.mock import AsyncMock, MagicMock
 
-from src.services.subscription import SubscriptionService
-from src.services.transaction import TransactionService
-from src.services.webhook import WebhookService
-from src.schemas.helius import HeliusEvent, HeliusEvents, NativeTransfer, TokenTransfers
+from app.services.subscription import SubscriptionService
+from app.services.transaction import TransactionService
+from app.services.webhook import WebhookService
+from app.schemas.helius import HeliusEvent, HeliusEvents, NativeTransfer, TokenTransfers
 
 VALID_WALLET = "11111111111111111111111111111111111111111111"
 FROM_WALLET = "22222222222222222222222222222222222222222222"

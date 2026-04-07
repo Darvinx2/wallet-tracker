@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends
 
-from src.api.dependencies import get_subscription_service
-from src.schemas.subscription import SubscriptionCreate, SubscriptionResponse
-from src.services.subscription import SubscriptionService
+from app.api.dependencies import get_subscription_service
+from app.schemas.subscription import SubscriptionCreate, SubscriptionResponse
+from app.services.subscription import SubscriptionService
 
 subscriptions = APIRouter()
 
