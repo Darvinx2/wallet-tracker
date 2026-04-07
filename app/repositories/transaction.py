@@ -1,9 +1,13 @@
+import logging
+
 from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models import Transaction
 from app.schemas.transaction import TransactionCreate
+
+logger = logging.getLogger(__name__)
 
 
 class TransactionRepository:
@@ -15,9 +19,9 @@ class TransactionRepository:
             transaction = Transaction(**data.model_dump())
             self.db.add(transaction)
             await self.db.commit()
-        except IntegrityError as e:
+        except IntegrityError:
             await self.db.rollback()
-            print("Error", e)
+            logger.warning("Duplicate transaction signature=%s, skipping", data.signature)
 
     async def get_by_wallet(self, wallet_address: str) -> list[Transaction]:
         result = await self.db.scalars(

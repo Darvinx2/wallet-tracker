@@ -1,6 +1,10 @@
+import logging
+
 from app.repositories.transaction import TransactionRepository
 from app.schemas.helius import HeliusEvent
 from app.schemas.transaction import TransactionCreate
+
+logger = logging.getLogger(__name__)
 
 
 class WebhookService:
@@ -8,6 +12,7 @@ class WebhookService:
         self.repo = repo
 
     async def process(self, event: HeliusEvent) -> None:
+        logger.info("Processing event signature=%s type=%s", event.signature, event.type)
         data = self._parse_event(event)
         await self.repo.save(data)
 

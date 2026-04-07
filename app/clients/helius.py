@@ -1,4 +1,8 @@
+import logging
+
 import httpx
+
+logger = logging.getLogger(__name__)
 
 
 class HeliusClient:
@@ -8,6 +12,7 @@ class HeliusClient:
         self.api_key = api_key
 
     async def get_webhook(self, webhook_id: str) -> dict:
+        logger.debug("Fetching webhook %s", webhook_id)
         async with httpx.AsyncClient() as client:
             response = await client.get(
                 f"{self.BASE_URL}/webhooks/{webhook_id}",
@@ -17,6 +22,7 @@ class HeliusClient:
             return response.json()
 
     async def update_webhook_addresses(self, webhook_id: str, addresses: list[str]) -> None:
+        logger.debug("Updating webhook %s with %d addresses", webhook_id, len(addresses))
         webhook = await self.get_webhook(webhook_id)
 
         payload = {
@@ -34,5 +40,5 @@ class HeliusClient:
                 json=payload,
             )
             if response.is_error:
+                logger.error("Helius error %s: %s", response.status_code, response.text)
                 raise ValueError(f"Helius error {response.status_code}: {response.text}")
-
