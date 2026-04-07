@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends
 
-from src.api.dependencies import get_transaction_service
-from src.schemas.transaction import TransactionResponse
-from src.services.transaction import TransactionService
+from app.api.dependencies import get_transaction_service
+from app.schemas.transaction import TransactionResponse
+from app.services.transaction import TransactionService
 
 transactions = APIRouter()
 

@@ -2,8 +2,8 @@ from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.models import Transaction
-from src.schemas.transaction import TransactionCreate
+from app.models import Transaction
+from app.schemas.transaction import TransactionCreate
 
 
 class TransactionRepository:

@@ -1,5 +1,5 @@
-from src.repositories.transaction import TransactionRepository
-from src.schemas.transaction import TransactionResponse
+from app.repositories.transaction import TransactionRepository
+from app.schemas.transaction import TransactionResponse
 
 
 class TransactionService:
